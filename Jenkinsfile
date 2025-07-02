@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/jenkins-demo.git'
+                git 'https://github.com/Sruthy-Madhu/jenkins-demo.git'
             }
         }
         stage('Install Dependencies') {
@@ -19,7 +19,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("your-dockerhub-username/jenkins-demo:latest")
+                    docker.build("Sruthy-Madhu/jenkins-demo:latest")
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-creds') {
-                        docker.image("your-dockerhub-username/jenkins-demo:latest").push()
+                        docker.image("Sruthy-Madhu/jenkins-demo:latest").push()
                     }
                 }
             }
