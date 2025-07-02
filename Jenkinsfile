@@ -1,17 +1,18 @@
 pipeline {
-    agent any  // Runs on any available Jenkins agent
-
+    agent any
+    tools {
+        nodejs 'nodejs'  // Must match the name in Jenkins Tools
+    }
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Sruthy-Madhu/jenkins-demo.git'
             }
         }
-
         stage('Build') {
             steps {
-                echo 'Installing dependencies...'
-                sh 'npm install'  // Example for Node.js (modify as needed)
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
 
