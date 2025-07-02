@@ -9,12 +9,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Sruthy-Madhu/jenkins-demo.git'
             }
         }
-        stage('Build') {
-            steps {
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
 
         stage('Test') {
             steps {
