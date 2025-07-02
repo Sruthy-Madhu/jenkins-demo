@@ -10,19 +10,6 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                sh 'npm test'  // Example test command
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-                // Add deployment steps (e.g., `scp`, `rsync`, Docker push)
-            }
-        }
     }
 
     post {
