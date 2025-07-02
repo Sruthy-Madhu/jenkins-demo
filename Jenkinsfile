@@ -1,36 +1,41 @@
 pipeline {
-    agent any
+    agent any  // Runs on any available Jenkins agent
+
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Sruthy-Madhu/jenkins-demo.git'
+                git branch: 'main', url: 'https://github.com/yourusername/dev-starter-pack.git'
             }
         }
-        stage('Install Dependencies') {
+
+        stage('Build') {
             steps {
-                sh 'npm install'
+                echo 'Installing dependencies...'
+                sh 'npm install'  // Example for Node.js (modify as needed)
             }
         }
+
         stage('Test') {
             steps {
-                sh 'npm test || true'  
+                echo 'Running tests...'
+                sh 'npm test'  // Example test command
             }
         }
-        stage('Docker Build') {
+
+        stage('Deploy') {
             steps {
-                script {
-                    docker.build("Sruthy-Madhu/jenkins-demo:latest")
-                }
+                echo 'Deploying...'
+                // Add deployment steps (e.g., `scp`, `rsync`, Docker push)
             }
         }
-        stage('Docker Push') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-creds') {
-                        docker.image("Sruthy-Madhu/jenkins-demo:latest").push()
-                    }
-                }
-            }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
