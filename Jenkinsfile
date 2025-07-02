@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'npm test || true'  # Skip if no tests
+                sh 'npm test || true'  
             }
         }
         stage('Docker Build') {
